@@ -11,7 +11,7 @@ Ce projet vise à concevoir et implanter un ensemble de modules permettant la co
 - Couvrir un sous-ensemble étendu de COMMON LISP, en privilégiant les traits nécessaires à la réflexivité (fermetures, continuations, labels).
 - Assurer la méta-évaluation du méta-évaluateur lui-même et faciliter la méta-évaluation des deux autres modules.
 - Implémenter une VM robuste, capable d'exécuter tout code généré, avec support pour la gestion des fichiers et des transformations.
-![image](https://github.com/user-attachments/assets/964ba67d-d4af-4b8b-87fc-f61f6fe23fc7)
+- ![image](https://github.com/user-attachments/assets/964ba67d-d4af-4b8b-87fc-f61f6fe23fc7)
 
 
 ## Modules Principaux
