@@ -23,17 +23,11 @@ Le méta-évaluateur sera capable d'interpréter un large sous-ensemble de COMMO
 - Support des traits vus en cours comme les continuations et les macros.
 - Une attention particulière aux macros comme `loop`, qui nécessitent un traitement spécifique en raison de leur complexité d'expansion.
 
-Extensions possibles :
-- Implémentation d'un méta-évaluateur SCHEME en SCHEME ou COMMON LISP, capable de méta-évaluer lui-même.
-- Méta-évaluation avec filtrage et gestion avancée des macros (inspirée de SCHEME).
-
 ### 2. Transformation vers un Langage Intermédiaire (LI)
 Ce module traduit le code LISP en un langage intermédiaire simplifié, plus proche du niveau machine.
 
 - **Traits à couvrir** : Gestion des fermetures, fonctions locales, et structures de contrôle classiques (let, if, loop, select).
 - **Simplifications possibles** : Les traits complexes comme `&rest` et `&optional` peuvent être omis.
-
-Bien que la transformation du code de ce module vers un langage intermédiaire soit facultative, elle constitue une étape intéressante pour tester les capacités de la chaîne de compilation.
 
 ### 3. Générateur de Code pour la VM
 Le générateur de code traduit le langage intermédiaire (LI) en instructions exécutables par la VM.
@@ -66,11 +60,11 @@ La VM exécute le code ASM produit par le générateur de code. Elle doit être 
    - Créer une machine virtuelle capable d'interpréter le code généré.
    - Ajouter un chargeur de fichiers et des outils pour tester les programmes compilés.
 
-## Extensions Facultatives
+## Extensions Possibles
 - **Optimisations** : Ajouter des optimisations spécifiques pour améliorer la performance de la VM.
 - **Support SCHEME** : Étendre le méta-évaluateur pour gérer SCHEME.
 - **Support Avancé des Macros** : Implémenter des mécanismes avancés pour traiter les macros complexes.
 
 ## Conclusion
-Ce projet illustre le processus complet de compilation : de la méta-évaluation de LISP à la génération et l'exécution de code sur une machine virtuelle. En combinant théorie et pratique, il permet d'explorer des concepts fondamentaux de compilation, comme la gestion des fermetures et des macros, tout en restant ancré dans un contexte éducatif.
+Ce projet présente l’intégralité du processus de compilation, depuis la méta-évaluation de LISP jusqu’à la génération et l’exécution du code sur une machine virtuelle. En combinant théorie et pratique, il permet d’explorer des notions importantes de la compilation comme la gestion des fermetures et des macros.
 
