@@ -1,0 +1,44 @@
+# LISP VM
+
+Ce projet implémente une machine virtuelle pour un compilateur LISP.
+
+## Structure du projet
+
+- `src/` : Contient le code source de la machine virtuelle.
+- `tests/` : Contient les tests unitaires et d'intégration.
+
+## Prérequis
+
+- Un interpréteur CLISP
+
+## Tests
+
+Pour exécuter les tests, utilisez la commande suivante :
+
+```sh
+clisp ./tests/run-all-tests.lisp
+```
+
+## TODO
+
+- [x] Structure de la machine virtuelle (registres, mémoire, flags)
+- [x] Accesseurs pour les registres et la mémoire (get, set)
+- [x] Instructions de memoire (load, store)
+- [x] Instructions de registres (move)
+- [x] Instructions d'arithmétiques (add, sub, mul, div, incr, decr)
+- [ ] Instructions de pile (push, pop)
+- [ ] Accès dans la pile (peek, poke)
+- [ ] Generalisation de la pile (usage sans SP remplacé par un registre)
+- [ ] Adresses, etiquettes, et instructions de saut inconditionnel (label, jump)
+- [ ] Saut avec retour (JSR, RTN)
+- [ ] Instructions de comparaison (cmp)
+- [ ] Les saut conditionnels (jeq, jne, jlt, jgt, jle, jge)
+- [ ] Instructions diverses (nop, halt)
+
+## Plus tard
+
+- [ ] Reliure et chargement de code
+- [ ] Resolution d'adresse
+- [ ] Chargement de chargeur
+- [ ] Execution interprete naif
+- [ ] Machine virtuelle threadee
