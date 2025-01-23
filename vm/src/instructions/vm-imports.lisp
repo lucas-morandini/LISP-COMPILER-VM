@@ -1,0 +1,6 @@
+(require "vm-memory.lisp")
+(require "vm-registry.lisp")
+(require "vm-arithm.lisp")
+(require "vm-stack.lisp")
+(require "vm-jumps.lisp")
+(require "vm-various.lisp")

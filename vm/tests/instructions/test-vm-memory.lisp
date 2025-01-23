@@ -5,13 +5,13 @@
 ;;; Description : Tests pour handle-load et handle-store
 ;;; ============================================================================
 
-(load "../src/vm-struct.lisp")
-(load "../src/vm-accessors.lisp")
-(load "../src/vm-memory.lisp")
+(require "../src/instructions/vm-imports.lisp")
+(require "../src/utils/vm-imports.lisp")
+(require "../src/functional-interface/vm.lisp")
 
 (defun test-handle-load ()
   "Teste le comportement de handle-load sur toutes les possibilités"
-  (let ((vm (init-vm :name "test-vm" :memsize 50)))
+  (let ((vm (init-vm :name "test-vm" :memsize 1024 :max-stack-size 256)))
     ;; :R1 = 10, MEM[10] = 20
     (set-vm-registry vm :R1 10)
     (set-vm-memory-at vm 10 20)
@@ -38,7 +38,7 @@
 
 (defun test-handle-store ()
   "Teste le comportement de handle-store sur toutes les possibilités"
-  (let ((vm (init-vm :name "test-vm" :memsize 50)))
+  (let ((vm (init-vm :name "test-vm" :memsize 1024 :max-stack-size 256)))
     ;; 1) (STORE :R1 :R0) => MEM[R0] = :R1
     (set-vm-registry vm :R1 10)  ; Valeur à écrire
     (set-vm-registry vm :R0 20)  ; Adresse où écrire

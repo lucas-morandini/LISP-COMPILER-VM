@@ -5,14 +5,13 @@
 ;;; Description : Tests pour handle-move
 ;;; ============================================================================
 
-(load "../src/vm-struct.lisp")
-(load "../src/vm-accessors.lisp")
-(load "../src/vm-memory.lisp")
-(load "../src/vm-registry.lisp")
+(require "../src/instructions/vm-imports.lisp")
+(require "../src/utils/vm-imports.lisp")
+(require "../src/functional-interface/vm.lisp")
 
 (defun test-handle-move ()
   "Teste le comportement de handle-load sur toutes les possibilités"
-  (let ((vm (init-vm :name "test-vm" :memsize 50)))
+  (let ((vm (init-vm :name "test-vm" :memsize 1024 :max-stack-size 256)))
     ;; 1) (MOVE :R1 :R0) => :R0 = :R1 = 10
     (set-vm-registry vm :R1 10)
     (handle-move vm '(MOVE :R1 :R0))

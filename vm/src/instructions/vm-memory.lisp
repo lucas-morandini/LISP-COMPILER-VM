@@ -29,7 +29,7 @@
 
       ;; 3) (LOAD (+ R1 2) R0) => Charger depuis MEM[ R1+2 ] dans R0
       ;;    Par ex., si R1 = 500, on lit MEM[502].
-      ((and (listp src) (keywordp dest))
+      ((and (is-offset src) (keywordp dest))
        ;; src est de la forme '(+ R1 2)
        (let* ((reg    (cadr src))   ; R1
               (offset (caddr src))  ; 2
@@ -60,7 +60,7 @@
          (set-vm-memory-at vm dest src-val)))
 
       ;; 3) STORE R1 (+ R0 3) => on écrit le contenu de R1 à l'adresse (R0+3)
-      ((and (keywordp src) (listp dest))
+      ((and (keywordp src) (is-offset dest))
        ;; dest = '(+ R0 3)
        (let* ((reg     (cadr dest))    ;; R0
               (offset  (caddr dest))   ;; 3
@@ -69,14 +69,14 @@
          (set-vm-memory-at vm addr src-val)))
 
       ;; 4) STORE (:CONST 3) R2 => on écrit la valeur 3 à l'adresse contenue dans R2
-      ((and (listp src) (keywordp dest))
+      ((and (is-const src) (keywordp dest))
        ;; src = '(:CONST 3)
        (let* ((src-val  (cadr src))
               (dest-val (get-vm-registry vm dest)))
          (set-vm-memory-at vm dest-val src-val)))
 
       ;; 5) STORE (:CONST 3) 500 => on écrit la valeur 3 à l'adresse 500
-      ((and (listp src) (integerp dest))
+      ((and (is-const src) (integerp dest))
        (let ((src-val (cadr src)))
          (set-vm-memory-at vm dest src-val)))
 

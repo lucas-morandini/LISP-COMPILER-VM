@@ -26,14 +26,14 @@ clisp ./tests/run-all-tests.lisp
 - [x] Instructions de memoire (load, store)
 - [x] Instructions de registres (move)
 - [x] Instructions d'arithmétiques (add, sub, mul, div, incr, decr)
-- [ ] Instructions de pile (push, pop)
-- [ ] Accès dans la pile (peek, poke)
-- [ ] Generalisation de la pile (usage sans SP remplacé par un registre)
-- [ ] Adresses, etiquettes, et instructions de saut inconditionnel (label, jump)
-- [ ] Saut avec retour (JSR, RTN)
-- [ ] Instructions de comparaison (cmp)
-- [ ] Les saut conditionnels (jeq, jne, jlt, jgt, jle, jge)
-- [ ] Instructions diverses (nop, halt)
+- [x] Instructions de pile (push, pop)
+- [x] Accès dans la pile (peek, poke)
+- [x] Generalisation de la pile (usage sans SP remplacé par un registre)
+- [x] Adresses, etiquettes, et instructions de saut inconditionnel (label, jump)
+- [x] Saut avec retour (JSR, RTN)
+- [x] Instructions de comparaison (cmp)
+- [x] Les saut conditionnels (jeq, jne, jlt, jgt, jle, jge)
+- [x] Instructions diverses (nop, halt)
 
 ## Plus tard
 

@@ -5,15 +5,13 @@
 ;;; Description : Tests pour handle-move
 ;;; ============================================================================
 
-(load "../src/vm-struct.lisp")
-(load "../src/vm-accessors.lisp")
-(load "../src/vm-memory.lisp")
-(load "../src/vm-registry.lisp")
-(load "../src/vm-arithm.lisp")
+(require "../src/instructions/vm-imports.lisp")
+(require "../src/utils/vm-imports.lisp")
+(require "../src/functional-interface/vm.lisp")
 
 (defun test-handle-add ()
     "Teste le comportement de handle-add sur toutes les possibilités"
-    (let ((vm (init-vm :name "test-vm" :memsize 50)))
+    (let ((vm (init-vm :name "test-vm" :memsize 1024 :max-stack-size 256)))
         ;; 1) (ADD :R1 :R0) => :R0 = :R0 + :R1 = 10 + 20 = 30
         (set-vm-registry vm :R1 10)
         (set-vm-registry vm :R0 20)
@@ -32,7 +30,7 @@
 
 (defun test-handle-sub ()
     "Teste le comportement de handle-sub sur toutes les possibilités"
-    (let ((vm (init-vm :name "test-vm" :memsize 50)))
+    (let ((vm (init-vm :name "test-vm" :memsize 1024 :max-stack-size 256)))
         ;; 1) (SUB :R1 :R0) => :R0 = :R0 - :R1 = 20 - 10 = 10
         (set-vm-registry vm :R1 10)
         (set-vm-registry vm :R0 20)
@@ -51,7 +49,7 @@
 
 (defun test-handle-mul ()
     "Teste le comportement de handle-mul sur toutes les possibilités"
-    (let ((vm (init-vm :name "test-vm" :memsize 50)))
+    (let ((vm (init-vm :name "test-vm" :memsize 1024 :max-stack-size 256)))
         ;; 1) (MUL :R1 :R0) => :R0 = :R0 * :R1 = 10 * 20 = 200
         (set-vm-registry vm :R1 10)
         (set-vm-registry vm :R0 20)
@@ -70,7 +68,7 @@
 
 (defun test-handle-div ()
     "Teste le comportement de handle-div sur toutes les possibilités"
-    (let ((vm (init-vm :name "test-vm" :memsize 50)))
+    (let ((vm (init-vm :name "test-vm" :memsize 1024 :max-stack-size 256)))
         ;; 1) (DIV :R1 :R0) => :R0 = :R0 / :R1 = 20 / 10 = 2
         (set-vm-registry vm :R1 10)
         (set-vm-registry vm :R0 20)
@@ -89,7 +87,7 @@
 
 (defun test-handle-incr ()
     "Teste le comportement de handle-incr sur toutes les possibilités"
-    (let ((vm (init-vm :name "test-vm" :memsize 50)))
+    (let ((vm (init-vm :name "test-vm" :memsize 1024 :max-stack-size 256)))
         ;; 1) (INCR :R0) => :R0 = :R0 + 1 = 20 + 1 = 21
         (set-vm-registry vm :R0 20)
         (handle-incr vm '(INCR :R0))
@@ -101,7 +99,7 @@
 
 (defun test-handle-decr ()
     "Teste le comportement de handle-decr sur toutes les possibilités"
-    (let ((vm (init-vm :name "test-vm" :memsize 50)))
+    (let ((vm (init-vm :name "test-vm" :memsize 1024 :max-stack-size 256)))
         ;; 1) (DECR :R0) => :R0 = :R0 - 1 = 20 - 1 = 19
         (set-vm-registry vm :R0 20)
         (handle-decr vm '(DECR :R0))
