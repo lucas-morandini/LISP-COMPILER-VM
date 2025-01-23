@@ -18,6 +18,8 @@
     ;; R7 est le stack pointer : init a 64
     (MEMORY (make-array 1024 :initial-element 0))     ; Mémoire principale
     (LABELS (make-hash-table :test 'equal))           ; Table des étiquettes
+    (VARS (make-hash-table :test 'equal))        ; Table des variables
+    (FUNCTIONS (make-hash-table :test 'equal))        ; Table des fonctions
     (HALTED 0)                                      ; Flag d'arrêt
     (MAX-MEMORY-SIZE 1024)                            ; Taille maximale de la mémoire
     (MAX-STACK-SIZE 256)                              ; Taille maximale de la pile

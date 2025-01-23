@@ -11,9 +11,12 @@
     "Test de la compilation de la definition de fonction"
     ;; run compiled code in vm
     (let ((vm (init-vm))
-          (code  '(defun test (x) (+ x 1)) ))
-        (load-vm vm (compile-defun code))
-        (run-vm vm)
+          (code  '(defun test (x) (+ x 1)))
+          (call '(test 1))
+          )
+        (load-vm vm (compile-generic code))
+        (load-vm vm (compile-generic call))
+        ;;(run-vm vm)
         (assert (= (get-vm-registry vm :R0) 2)))
         (format t "test-compile-defun passed~%")
         )
@@ -23,4 +26,4 @@
     (test-compile-defun)
     )
 
-(run-tests-compiler-fonc)
+;;(run-tests-compiler-fonc)

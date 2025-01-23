@@ -41,7 +41,6 @@
         ((is-move-instruct instruct) (handle-move vm instruct))
         ((is-load-instruct instruct) (handle-load vm instruct))
         ((is-store-instruct instruct) (handle-store vm instruct))
-        ((is-lit instruct) (handle-lit vm instruct))
         ((is-var instruct) (handle-var vm instruct))
-        ((is-set-var instruct) (handle-set-var vm instruct))
+        ;;((is-apply instruct) (handle-apply vm instruct))
         (t (error "Instruction inconnue"))))

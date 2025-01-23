@@ -35,6 +35,7 @@
 (defun run-tests-compiler-arithm ()
     "Lance les tests des expressions arithmetiques"
     (test-compile-add)
+    (test-compile-sub)
     )
 
 ;;(run-tests-compiler-arithm)

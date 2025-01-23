@@ -116,5 +116,26 @@
 (defun set-vm-label (vm label value)
     (setf (gethash label (vm-labels vm)) value))
 
+;; --- VARS ---
+(defun get-vm-vars (vm)
+    (vm-vars vm))
+(defun set-vm-vars (vm value)
+    (setf (vm-vars vm) value))
+
+(defun get-vm-var (vm var)
+    (gethash var (vm-vars vm)))
+(defun set-vm-var (vm var value)
+    (setf (gethash var (vm-vars vm)) value))
+
+;; --- FUNCTIONS ---
+(defun get-vm-functions (vm)
+    (vm-functions vm))
+(defun set-vm-functions (vm value)
+    (setf (vm-functions vm) value))
+
+(defun get-vm-function (vm function)
+    (gethash function (vm-functions vm)))
+(defun set-vm-function (vm function value)
+(setf (gethash function (vm-functions vm)) value))
 
 

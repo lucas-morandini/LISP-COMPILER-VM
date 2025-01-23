@@ -128,12 +128,19 @@
                (progn
                  (set-vm-halted vm 1)
                  (format t "INSTRUCTION : HALT~%")))
+              
+                ;  ((is-apply instruct)
+                ;   (progn
+                ;     (format t "INSTRUCTION : APPLY~%")
+                ;     (handle-apply vm instruct)))
               ;; 2) Instruction valides
               ((is-valid-instruct instruct)
                (handler vm instruct)
                (format t "INSTRUCTION : ~A~%" instruct))
               ;; 3) LABEL : ne rien faire
-              ((eq (car instruct) 'LABEL))
+              ((eq (car instruct) 'LABEL)
+              
+              )
               ;; 4) Instruction invalide
               (t
                (error "Instruction invalide : ~A" instruct)))
