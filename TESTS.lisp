@@ -1,2 +1,0 @@
-(load "VM-PILE.lisp")
-
