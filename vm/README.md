@@ -16,7 +16,7 @@ Ce projet implémente une machine virtuelle pour un compilateur LISP.
 Pour exécuter les tests, utilisez la commande suivante :
 
 ```sh
-clisp ./tests/run-all-tests.lisp
+clisp vm/tests/run-all-tests.lisp
 ```
 
 ## TODO
@@ -39,5 +39,5 @@ clisp ./tests/run-all-tests.lisp
 
 - [x] Reliure et chargement de code
 - [x] Resolution d'adresse
-- [x] Chargement de chargeur
+- [ ] Chargement de chargeur
 - [x] Execution interprete naif

@@ -5,6 +5,10 @@
 ;;; Description : Tests divers pour l'exécution de la VM
 ;;; ============================================================================
 
+(require "vm/src/functional-interface/vm.lisp")
+(require "vm/src/instructions/vm-imports.lisp")
+(require "vm/src/utils/vm-imports.lisp")
+
 (defun test-run-vm-1 ()
   "Teste la fonction run-vm."
   (let ((vm (init-vm :name "test-vm" :memsize 1024 :max-stack-size 256)))
@@ -73,4 +77,4 @@
   (test-run-vm-fibo))
 
 ; (run-tests-run)
-;;(test-run-vm-fibo)
+(test-run-vm-fibo)

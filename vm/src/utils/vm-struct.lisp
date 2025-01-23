@@ -31,3 +31,4 @@
     (FEQ 0)                                           ; Flag booléen "égal"
     (FNIL 0)                                          ; Flag booléen "nil"
 )                             
+
