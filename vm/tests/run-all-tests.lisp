@@ -3,15 +3,16 @@
 ;;; Description : Lancement de tous les tests pour la VM
 ;;; ============================================================================
 
-(load "./utils/test-vm-struct.lisp") 
-(load "./utils/test-vm-type-check.lisp")
-(load "./instructions/test-vm-memory.lisp")
-(load "./instructions/test-vm-registry.lisp")
-(load "./instructions/test-vm-arithm.lisp")
-(load "./instructions/test-vm-stack.lisp")
-(load "./instructions/test-vm-jumps.lisp")
-(load "./instructions/test-vm-various.lisp")
-(load "./load/test-vm-load.lisp")
+(load "tests/utils/test-vm-struct.lisp") 
+(load "tests/utils/test-vm-type-check.lisp")
+(load "tests/instructions/test-vm-memory.lisp")
+(load "tests/instructions/test-vm-registry.lisp")
+(load "tests/instructions/test-vm-arithm.lisp")
+(load "tests/instructions/test-vm-stack.lisp")
+(load "tests/instructions/test-vm-jumps.lisp")
+(load "tests/instructions/test-vm-various.lisp")
+(load "tests/functional-interface/test-vm-load.lisp")
+(load "tests/functional-interface/test-vm-run.lisp")
 
 (format t "=== Lancement des tests de test-vm-struct.lisp ===~%")
 (run-tests-struct)
@@ -31,4 +32,6 @@
 (run-tests-various)
 (format t "=== Lancement des tests de test-vm-load.lisp ===~%")
 (run-tests-load)
+(format t "=== Lancement des tests de test-vm-run.lisp ===~%")
+(run-tests-run)
 (format t "=== Tous les tests ont été exécutés ===~%")

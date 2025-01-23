@@ -20,7 +20,7 @@
             (let ((src-val (get-vm-registry vm src)))
                 (set-vm-registry vm dest src-val)))
         ;; 2) (MOVE (:CONST 10) R0) => R0 = 10
-        ((and (listp src) (keywordp dest))
+        ((and (is-const src) (keywordp dest))
             (let ((val (cadr src)))
                 (set-vm-registry vm dest val)))
         ;; 3) (MOVE 10 R0) => R0 = 10

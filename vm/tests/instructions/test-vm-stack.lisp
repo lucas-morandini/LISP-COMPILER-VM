@@ -5,9 +5,9 @@
 ;; Description    : Tests pour handle-push et handle-pop
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require "../src/instructions/vm-imports.lisp")
-(require "../src/utils/vm-imports.lisp")
-(require "../src/functional-interface/vm.lisp")
+(require "src/instructions/vm-imports.lisp")
+(require "src/utils/vm-imports.lisp")
+(require "src/functional-interface/vm.lisp")
 
 (defun test-handle-push ()
   "Teste le comportement de handle-push sur toutes les possibilités"

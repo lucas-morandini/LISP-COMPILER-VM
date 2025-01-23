@@ -5,9 +5,9 @@
 ;;; Description : Tests divers pour le chargement de la VM
 ;;; ============================================================================
 
-(require "../src/instructions/vm-imports.lisp")
-(require "../src/utils/vm-imports.lisp")
-(require "../src/functional-interface/vm.lisp")
+(require "src/instructions/vm-imports.lisp")
+(require "src/utils/vm-imports.lisp")
+(require "src/functional-interface/vm.lisp")
 
 (defun test-load-vm-1 ()
   "Teste la fonction load-vm."
@@ -39,9 +39,7 @@
 
       ;; 3. CP mis à jour correctement
       (assert (equal (get-vm-cp vm) 326)) ; CP doit pointer à la fin du code
-
-      ;; Log de succès
-      (format t "Test vm-load passed~%"))))
+      (format t "test vm-load passed~%"))))
 
 (defun run-tests-load ()
   "Lance tous les tests pour le chargement de la VM."

@@ -6,8 +6,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; --- Importations ---
-(require "../src/instructions/vm-imports.lisp")
-(require "../src/utils/vm-imports.lisp")
+(require "src/instructions/vm-imports.lisp")
+(require "src/utils/vm-imports.lisp")
 
 ;; --- Initialisation de la machine virtuelle ---
 (defun init-vm (&key (name "default-name") (memsize 1024) (max-stack-size 256))
@@ -51,6 +51,7 @@
 (defun load-vm (vm code)
   "Charge le code dans la mémoire de la machine virtuelle VM.
   - code est une liste de listes représentant les instructions."
+  (format t "Chargement du code dans la machine virtuelle ~A.~%" (get-vm-name vm))
   (let ((cp (get-vm-cp vm))
         (labels (get-vm-labels vm)) ; Table des étiquettes
         (forward-refs (make-hash-table :test 'equal))) ; Table pour les jump dont le label n'est pas encore défini
@@ -103,11 +104,47 @@
              forward-refs)
     ;; Mettre à jour CP dans la VM
     (set-vm-cp vm cp)
-    (format t "Code chargé avec succès.~%")))
+    (format t "Fin du chargement du code dans la machione virtuelle.~%")
+    ;; Afficher les instructions chargées
+    (format t "Instructions chargées :~%")
+    (loop for i from 320 to (1- cp) do
+        (format t "~A : ~A~%" i (get-vm-memory-at vm i))
+    )
+    (format t "Fin des instructions chargées.~%")
+    ))
 
 ;; --- Execution de la machine virtuelle ---
-; (defun run-vm (vm)
-;     "Exécute la machine virtuelle VM."
-;     (format t "Execution de la machine virtuelle ~A~%" (get-vm-name vm))
-;     (loop
-;         )
+(defun run-vm (vm)
+    "Exécute la machine virtuelle VM."
+    (format t "Execution de la machine virtuelle ~A~%" (get-vm-name vm))
+    (loop
+        ;; Condition d'arrêt : la machine est arrêtée
+        while (eq (get-vm-halted vm) 0) do
+          (let* ((pc (get-vm-pc vm)) ;; lecture du compteur ordinal
+                 (instruct (get-vm-memory-at vm pc))) ;; lecture de l'instruction
+            (cond
+              ;; 1) Instruction HALT
+              ((is-halt-instruct instruct)
+               (progn
+                 (set-vm-halted vm 1)
+                 (format t "INSTRUCTION : HALT~%")))
+              ;; 2) Instruction valides
+              ((is-valid-instruct instruct)
+               (handler vm instruct)
+               (format t "INSTRUCTION : ~A~%" instruct))
+              ;; 3) LABEL : ne rien faire
+              ((eq (car instruct) 'LABEL))
+              ;; 4) Instruction invalide
+              (t
+               (error "Instruction invalide : ~A" instruct)))
+            ;; 3) Incrémenter le compteur ordinal sauf si modifié par l'instruction JMP
+            (unless (is-jump-instruct instruct)
+            (set-vm-pc vm (1+ (get-vm-pc vm))))))
+        ;; 4) Retourner le contenu de R0 apres l'arrêt
+        (format t "Valeur de R0 : ~A~%" (get-vm-registry vm :R0))
+        (format t "Fin de l'exécution de la machine virtuelle ~A~%" (get-vm-name vm))
+        (get-vm-registry vm :R0)
+        )
+
+; ;; --- Application d'une fonction a plusieurs arguments dans la VM ---
+; (defun apply-vm (fn vm &rest args))

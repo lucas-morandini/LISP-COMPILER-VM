@@ -40,7 +40,7 @@
 
 (defun is-arith-instruct (src)
   "Vérifie si src est une instruction arithmétique"
-  (and (listp src) (member (car src) '(ADD SUB MUL DIV MOD))))
+  (and (listp src) (member (car src) '(ADD SUB MUL DIV INCR DECR))))
 
 (defun is-test-instruct (src)
   "Vérifie si src est une instruction de test"
@@ -50,9 +50,9 @@
   "Vérifie si src est une instruction NOP"
   (and (listp src) (eq (car src) 'NOP)))
 
-(defun is-mov-instruct (src)
+(defun is-move-instruct (src)
   "Vérifie si src est une instruction de mouvement"
-  (and (listp src) (eq (car src) 'MOV)))
+  (and (listp src) (eq (car src) 'MOVE)))
 
 (defun is-load-instruct (src)
   "Vérifie si src est une instruction de chargement"
@@ -62,3 +62,6 @@
   "Vérifie si src est une instruction de stockage"
   (and (listp src) (eq (car src) 'STORE)))
 
+(defun is-valid-instruct (src)
+  "Vérifie si src est une instruction valide"
+  (or (is-jump-instruct src) (is-halt-instruct src) (is-cmp-instruct src) (is-push-instruct src) (is-pop-instruct src) (is-arith-instruct src) (is-test-instruct src) (is-nop-instruct src) (is-move-instruct src) (is-load-instruct src) (is-store-instruct src)))

@@ -5,9 +5,9 @@
 ;;; Description : Tests pour handle-move
 ;;; ============================================================================
 
-(require "../src/instructions/vm-imports.lisp")
-(require "../src/utils/vm-imports.lisp")
-(require "../src/functional-interface/vm.lisp")
+(require "src/instructions/vm-imports.lisp")
+(require "src/utils/vm-imports.lisp")
+(require "src/functional-interface/vm.lisp")
 
 (defun test-handle-move ()
   "Teste le comportement de handle-load sur toutes les possibilités"

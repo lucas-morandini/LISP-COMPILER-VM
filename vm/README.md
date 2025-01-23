@@ -37,8 +37,8 @@ clisp ./tests/run-all-tests.lisp
 
 ## Plus tard
 
-- [ ] Reliure et chargement de code
-- [ ] Resolution d'adresse
-- [ ] Chargement de chargeur
+- [x] Reliure et chargement de code
+- [x] Resolution d'adresse
+- [x] Chargement de chargeur
 - [ ] Execution interprete naif
 - [ ] Machine virtuelle threadee

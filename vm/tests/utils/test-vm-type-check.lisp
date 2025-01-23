@@ -5,9 +5,9 @@
 ;; Description    : Tests pour les vérifications de types dans vm-type-check.lisp
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require "../src/instructions/vm-imports.lisp")
-(require "../src/utils/vm-imports.lisp")
-(require "../src/functional-interface/vm.lisp")
+(require "src/instructions/vm-imports.lisp")
+(require "src/utils/vm-imports.lisp")
+(require "src/functional-interface/vm.lisp")
 
 (defun test-is-const ()
     "Teste le comportement de is-const sur toutes les possibilités"

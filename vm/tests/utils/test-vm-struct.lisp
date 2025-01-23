@@ -5,9 +5,9 @@
 ;;; Description : Tests pour l'initialisation et la réinitialisation de la VM
 ;;; ============================================================================
 
-(require "../src/instructions/vm-imports.lisp")
-(require "../src/utils/vm-imports.lisp")
-(require "../src/functional-interface/vm.lisp")
+(require "src/instructions/vm-imports.lisp")
+(require "src/utils/vm-imports.lisp")
+(require "src/functional-interface/vm.lisp")
 
 (defun test-init-vm ()
   "Teste la fonction init-vm"
