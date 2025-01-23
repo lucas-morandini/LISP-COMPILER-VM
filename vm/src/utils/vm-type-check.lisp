@@ -9,6 +9,19 @@
   "Vérifie si src est une constante de la forme (:CONST <val>)"
   (and (listp src) (= (length src) 2) (eq (car src) :CONST)))
 
+(defun is-var (src)
+  "Vérifie si src est une variable de la forme (:VAR <reg>)"
+  (and (listp src) (= (length src) 2) (eq (car src) :VAR) (keywordp (cadr src))))
+
+(defun is-lit (src)
+  "Vérifie si src est un littéral de la forme (:LIT <val>)"
+  (and (listp src) (= (length src) 2) (eq (car src) :LIT)))
+
+  (defun is-set-var (src) 
+  "Vérifie si src est une affectation de la forme (:SET-VAR <reg>)"
+  (and (listp src) (= (length src) 2) (eq (car src) :SET-VAR) (keywordp (cadr src))))
+
+
 (defun is-offset (src)
   "Vérifie si src est un offset de la forme '(+ <reg> <offset>)"
   (and (listp src) (= (length src) 3) (eq (car src) '+) (keywordp (cadr src)) (integerp (caddr src))))
@@ -64,4 +77,4 @@
 
 (defun is-valid-instruct (src)
   "Vérifie si src est une instruction valide"
-  (or (is-jump-instruct src) (is-halt-instruct src) (is-cmp-instruct src) (is-push-instruct src) (is-pop-instruct src) (is-arith-instruct src) (is-test-instruct src) (is-nop-instruct src) (is-move-instruct src) (is-load-instruct src) (is-store-instruct src)))
+  (or (is-jump-instruct src) (is-halt-instruct src) (is-cmp-instruct src) (is-push-instruct src) (is-pop-instruct src) (is-arith-instruct src) (is-test-instruct src) (is-nop-instruct src) (is-move-instruct src) (is-load-instruct src) (is-store-instruct src) (is-set-var src) (is-var src) (is-const src) (is-lit src) (is-offset src) (is-ref src)))

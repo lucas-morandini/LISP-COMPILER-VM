@@ -12,7 +12,7 @@
     ;; run compiled code in vm
     (let ((vm (init-vm))
           (code  '(defun test (x) (+ x 1)) ))
-        (load-vm vm code)
+        (load-vm vm (compile-defun code))
         (run-vm vm)
         (assert (= (get-vm-registry vm :R0) 2)))
         (format t "test-compile-defun passed~%")

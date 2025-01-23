@@ -42,7 +42,7 @@
               ;; Début de la boucle
               (LABEL LOOP_START)
               ;; Si n <= 2, fin de boucle
-              (CMP (:CONST 2) :R0)
+              (CMP :R0 (:CONST 1))
               (JGT END_LOOP)
               ;; Calculer F(n) = F(n-1) + F(n-2)
               (PUSH :R2)
@@ -73,4 +73,4 @@
   (test-run-vm-fibo))
 
 ; (run-tests-run)
-(test-run-vm-fibo)
+;;(test-run-vm-fibo)

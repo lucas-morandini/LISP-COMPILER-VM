@@ -86,11 +86,16 @@
     - <adresse> est un nombre."
     (let ((adresse (cadr instruct)))
         (cond 
-            ;; 1) JLT 500 => saute à l'adresse 500 si FLT = 1
+            ;; 1) JLT 500 => saute à l'adresse 500 si FLT = 0 sinon JMP a pc+1
             ((numberp adresse)
-             (if (= (get-vm-flt vm) 1)
-             (handle-jmp vm `(JMP ,(get-vm-pc vm)))
-                (handle-jmp vm `(JMP ,adresse))))
+                (if (= (get-vm-flt vm) 1)
+                    (handle-jmp vm `(JMP ,(get-vm-pc vm)))
+                    (handle-jmp vm `(JMP ,adresse))))
+            ((is-ref adresse)
+                (if (= (get-vm-flt vm) 1)
+                    (handle-jmp vm `(JMP ,(get-vm-pc vm)))
+                    (handle-jmp vm `(JMP ,(get-vm-registry vm (cadr adresse)))))
+            )
             (t (error "Erreur d'argument pour l'instruction JLT: ~s" instruct)))
         )
     )
@@ -100,7 +105,7 @@
     - <adresse> est un nombre."
     (let ((adresse (cadr instruct)))
         (cond 
-            ;; 1) JLE 500 => saute à l'adresse 500 si FLT = 1 ou FEQ = 1
+            ;; 1) JLE 500 => saute a pc si FLT = 1 ou FEQ = 1 sinon JMP a pc+1
             ((numberp adresse)
              (if (or (= (get-vm-flt vm) 1) (= (get-vm-feq vm) 1))
                 (handle-jmp vm `(JMP ,(get-vm-pc vm)))
@@ -114,7 +119,7 @@
     - <adresse> est un nombre."
     (let ((adresse (cadr instruct)))
         (cond 
-            ;; 1) JGT 500 => saute à l'adresse 500 si FGT = 1
+            ;; 1) JGT 500 => saute a pc si FGT = 1 sinon JMP a pc+1
             ((numberp adresse)
              (if (= (get-vm-fgt vm) 1)
                 (handle-jmp vm `(JMP ,(get-vm-pc vm)))
@@ -128,12 +133,11 @@
     - <adresse> est un nombre."
     (let ((adresse (cadr instruct)))
         (cond 
-            ;; 1) JGE 500 => saute à l'adresse 500 si FGT = 1 ou FEQ = 1  sinon JMP a pc+1
+            ;; 1) JGE 500 => saute à l'adresse pc si FGT = 1 ou FEQ = 1 sinon JMP a pc+1
             ((numberp adresse)
              (if (or (= (get-vm-fgt vm) 1) (= (get-vm-feq vm) 1))
                 (handle-jmp vm `(JMP ,(get-vm-pc vm)))
-                (handle-jmp vm `(JMP ,adresse))
-                ))
+                (handle-jmp vm `(JMP ,adresse))))
 
             (t (error "Erreur d'argument pour l'instruction JGE: ~s" instruct)))
         )

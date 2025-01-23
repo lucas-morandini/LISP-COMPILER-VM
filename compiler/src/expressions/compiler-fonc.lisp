@@ -1,10 +1,9 @@
-;;; ============================================================================
-;;; Fichier : compiler-fonc.lisp
-;;; Auteur : MORANDINI Lucas
-;;; Date : 23/01/2025
-;;; Description : Fichier pour la compilation des expressions de fonction
-;;; ============================================================================
-
-(defun compile-defun (name params body)
-    "Compile la definition de fonction"
-)
+(defun compile-defun (expression)
+  "Compile (defun nom (params...) body)."
+  (let ((fn-name (cadr expression))
+        (params  (caddr expression))
+        (body    (cadddr expression)))
+    (append
+     `((LABEL ,fn-name))
+     (compile-generic body)
+     '((RET)))))
