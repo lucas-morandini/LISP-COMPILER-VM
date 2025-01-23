@@ -40,5 +40,4 @@ clisp ./tests/run-all-tests.lisp
 - [x] Reliure et chargement de code
 - [x] Resolution d'adresse
 - [x] Chargement de chargeur
-- [ ] Execution interprete naif
-- [ ] Machine virtuelle threadee
+- [x] Execution interprete naif

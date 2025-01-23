@@ -5,10 +5,6 @@
 ;;; Description : Tests divers pour le chargement de la VM
 ;;; ============================================================================
 
-(require "src/instructions/vm-imports.lisp")
-(require "src/utils/vm-imports.lisp")
-(require "src/functional-interface/vm.lisp")
-
 (defun test-load-vm-1 ()
   "Teste la fonction load-vm."
   (let ((vm (init-vm :name "test-vm" :memsize 1024 :max-stack-size 256)))

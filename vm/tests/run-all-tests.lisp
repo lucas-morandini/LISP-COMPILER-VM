@@ -3,16 +3,7 @@
 ;;; Description : Lancement de tous les tests pour la VM
 ;;; ============================================================================
 
-(load "tests/utils/test-vm-struct.lisp") 
-(load "tests/utils/test-vm-type-check.lisp")
-(load "tests/instructions/test-vm-memory.lisp")
-(load "tests/instructions/test-vm-registry.lisp")
-(load "tests/instructions/test-vm-arithm.lisp")
-(load "tests/instructions/test-vm-stack.lisp")
-(load "tests/instructions/test-vm-jumps.lisp")
-(load "tests/instructions/test-vm-various.lisp")
-(load "tests/functional-interface/test-vm-load.lisp")
-(load "tests/functional-interface/test-vm-run.lisp")
+(require "vm/tests/import-tests.lisp")
 
 (format t "=== Lancement des tests de test-vm-struct.lisp ===~%")
 (run-tests-struct)

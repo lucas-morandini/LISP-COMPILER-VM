@@ -6,8 +6,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; --- Importations ---
-(require "src/instructions/vm-imports.lisp")
-(require "src/utils/vm-imports.lisp")
+(require "vm/src/instructions/vm-imports.lisp")
+(require "vm/src/utils/vm-imports.lisp")
 
 ;; --- Initialisation de la machine virtuelle ---
 (defun init-vm (&key (name "default-name") (memsize 1024) (max-stack-size 256))
@@ -87,7 +87,7 @@
                  ((get-vm-label vm target)
                   (set-vm-memory-at vm cp (list jmp-keyword (gethash target labels))))
                  ;; b) La cible est un label en attente
-                 ((symbolp target)
+                 ((or (symbolp target) (stringp target))
                   (push cp (gethash target forward-refs (list)))
                   (set-vm-memory-at vm cp (list jmp-keyword 0))) ; Adresse temporaire
                  ;; c) La cible est un nombre
@@ -118,8 +118,8 @@
     "Exécute la machine virtuelle VM."
     (format t "Execution de la machine virtuelle ~A~%" (get-vm-name vm))
     (loop
-        ;; Condition d'arrêt : la machine est arrêtée
-        while (eq (get-vm-halted vm) 0) do
+        ;; Condition d'arrêt : la machine est arrêtée ou le PC a dépassé le CP
+        while (and (eq (get-vm-halted vm) 0) (< (get-vm-pc vm) (get-vm-cp vm))) do
           (let* ((pc (get-vm-pc vm)) ;; lecture du compteur ordinal
                  (instruct (get-vm-memory-at vm pc))) ;; lecture de l'instruction
             (cond

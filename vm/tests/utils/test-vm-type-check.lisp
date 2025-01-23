@@ -5,10 +5,6 @@
 ;; Description    : Tests pour les vérifications de types dans vm-type-check.lisp
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require "src/instructions/vm-imports.lisp")
-(require "src/utils/vm-imports.lisp")
-(require "src/functional-interface/vm.lisp")
-
 (defun test-is-const ()
     "Teste le comportement de is-const sur toutes les possibilités"
     (assert (is-const '(:CONST 10)))
@@ -80,7 +76,7 @@
     (format t "test-is-nop-instruct passed~%")
 
     ;; MOV
-    (assert (is-mov-instruct '(MOV :R0 :R1)))
+    (assert (is-move-instruct '(MOVE :R0 :R1)))
     (format t "test-is-mov-instruct passed~%")
 
     ;; LOAD

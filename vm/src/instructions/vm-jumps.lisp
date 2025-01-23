@@ -58,7 +58,8 @@
          (cond
            ((= val-a val-b) (set-vm-feq vm 1))
            ((> val-a val-b) (set-vm-fgt vm 1))
-           ((< val-a val-b) (set-vm-flt vm 1)))))
+           ((< val-a val-b) (set-vm-flt vm 1)))
+           ))
       ;; 2) CMP R0 10 => compare R0 et 10
       ((and (keywordp a) (is-const b))
        (let ((val-a (get-vm-registry vm a))
@@ -88,8 +89,8 @@
             ;; 1) JLT 500 => saute à l'adresse 500 si FLT = 1
             ((numberp adresse)
              (if (= (get-vm-flt vm) 1)
-                (handle-jmp vm `(JMP ,adresse))
-                (handle-jmp vm `(JMP ,(get-vm-pc vm)))))
+             (handle-jmp vm `(JMP ,(get-vm-pc vm)))
+                (handle-jmp vm `(JMP ,adresse))))
             (t (error "Erreur d'argument pour l'instruction JLT: ~s" instruct)))
         )
     )
@@ -102,8 +103,8 @@
             ;; 1) JLE 500 => saute à l'adresse 500 si FLT = 1 ou FEQ = 1
             ((numberp adresse)
              (if (or (= (get-vm-flt vm) 1) (= (get-vm-feq vm) 1))
-                (handle-jmp vm `(JMP ,adresse))
-                (handle-jmp vm `(JMP ,(get-vm-pc vm)))))
+                (handle-jmp vm `(JMP ,(get-vm-pc vm)))
+                (handle-jmp vm `(JMP ,adresse))))
             (t (error "Erreur d'argument pour l'instruction JLE: ~s" instruct)))
         )
     )
@@ -116,8 +117,8 @@
             ;; 1) JGT 500 => saute à l'adresse 500 si FGT = 1
             ((numberp adresse)
              (if (= (get-vm-fgt vm) 1)
-                (handle-jmp vm `(JMP ,adresse))
-                (handle-jmp vm `(JMP ,(get-vm-pc vm)))))
+                (handle-jmp vm `(JMP ,(get-vm-pc vm)))
+                (handle-jmp vm `(JMP ,adresse))))
             (t (error "Erreur d'argument pour l'instruction JGT: ~s" instruct)))
         )
     )
@@ -130,8 +131,8 @@
             ;; 1) JGE 500 => saute à l'adresse 500 si FGT = 1 ou FEQ = 1  sinon JMP a pc+1
             ((numberp adresse)
              (if (or (= (get-vm-fgt vm) 1) (= (get-vm-feq vm) 1))
-                (handle-jmp vm `(JMP ,adresse))
                 (handle-jmp vm `(JMP ,(get-vm-pc vm)))
+                (handle-jmp vm `(JMP ,adresse))
                 ))
 
             (t (error "Erreur d'argument pour l'instruction JGE: ~s" instruct)))
@@ -146,8 +147,8 @@
             ;; 1) JEQ 500 => saute à l'adresse 500 si FEQ = 1
             ((numberp adresse)
              (if (= (get-vm-feq vm) 1)
-                (handle-jmp vm `(JMP ,adresse))
-                (handle-jmp vm `(JMP ,(get-vm-pc vm)))))
+                (handle-jmp vm `(JMP ,(get-vm-pc vm)))
+                (handle-jmp vm `(JMP ,adresse))))
             (t (error "Erreur d'argument pour l'instruction JEQ: ~s" instruct)))
         )
     )
@@ -160,8 +161,8 @@
             ;; 1) JNE 500 => saute à l'adresse 500 si FEQ = 0
             ((numberp adresse)
              (if (= (get-vm-feq vm) 0)
-                (handle-jmp vm `(JMP ,adresse))
-                (handle-jmp vm `(JMP ,(get-vm-pc vm)))))
+                (handle-jmp vm `(JMP ,(get-vm-pc vm)))
+                (handle-jmp vm `(JMP ,adresse))))
             (t (error "Erreur d'argument pour l'instruction JNE: ~s" instruct)))
         )
     )
@@ -182,8 +183,8 @@
             ;; 1) JNIL 500 => saute à l'adresse 500 si FNIL = 1
             ((numberp adresse)
              (if (= (get-vm-fnil vm) 1)
-                (handle-jmp vm `(JMP ,adresse))
-                (handle-jmp vm `(JMP ,(get-vm-pc vm)))))
+                (handle-jmp vm `(JMP ,(get-vm-pc vm)))
+                (handle-jmp vm `(JMP ,adresse))))
             (t (error "Erreur d'argument pour l'instruction JNIL: ~s" instruct)))
         )
     )
@@ -196,8 +197,8 @@
             ;; 1) JTRUE 500 => saute à l'adresse 500 si FNIL = 0
             ((numberp adresse)
              (if (= (get-vm-fnil vm) 0)
-                (handle-jmp vm `(JMP ,adresse))
-                (handle-jmp vm `(JMP ,(get-vm-pc vm)))))
+                (handle-jmp vm `(JMP ,(get-vm-pc vm)))
+                (handle-jmp vm `(JMP ,adresse))))
             (t (error "Erreur d'argument pour l'instruction JTRUE: ~s" instruct)))
         )
     )

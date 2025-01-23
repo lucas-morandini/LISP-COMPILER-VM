@@ -5,10 +5,6 @@
 ;;; Description : Tests pour l'initialisation et la réinitialisation de la VM
 ;;; ============================================================================
 
-(require "src/instructions/vm-imports.lisp")
-(require "src/utils/vm-imports.lisp")
-(require "src/functional-interface/vm.lisp")
-
 (defun test-init-vm ()
   "Teste la fonction init-vm"
   (let ((vm (init-vm :name "test-vm" :memsize 1024 :max-stack-size 256)))

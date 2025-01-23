@@ -1,41 +1,25 @@
 # Projet : Compilation LISP vers VM
 
 ## Description Générale
-Ce projet vise à concevoir et implémenter un ensemble de modules permettant la compilation et l'exécution de programmes LISP à l'aide d'une machine virtuelle (VM) dédiée. Il s'articule autour de quatres grands modules :
+Ce projet vise à concevoir et implémenter un ensemble de modules permettant la compilation et l'exécution de programmes LISP à l'aide d'une machine virtuelle (VM) dédiée. Il s'articule autour de deux grands modules :
 
-1. **Méta-évaluateur de LISP** : Un interpréteur capable de méta-évaluer son propre code.  
-2. **Transformation vers un langage intermédiaire (LI)** : Traduire du code LISP vers un langage intermédiaire adapté à la VM.  
-3. **Générateur de code pour la VM** : Générer du code exécutable sur la machine virtuelle.  
-4. **Machine Virtuelle (VM)** : Permettre l’exécution du code généré (y compris la gestion des fonctions LISP primitives et le chargement de code).
+1. **Générateur de code pour la VM** : Générer du code exécutable sur la machine virtuelle.  
+2. **Machine Virtuelle (VM)** : Permettre l’exécution du code généré (y compris la gestion des fonctions LISP primitives et le chargement de code).
 
 ## Objectifs du Projet
 - Couvrir un sous-ensemble étendu de COMMON LISP, en privilégiant les traits nécessaires à la réflexivité (fermetures, continuations, labels).
-- Assurer la méta-évaluation du méta-évaluateur lui-même et faciliter la méta-évaluation des autres modules (transformation LI, génération de code).
 - Implémenter une VM robuste, capable d'exécuter tout code généré, avec un support pour la gestion des fichiers et l’interface avec LISP.
 
 ## Modules Principaux
 
-### 1. Méta-évaluateur de LISP
-Le méta-évaluateur interprète un large sous-ensemble de COMMON LISP, et peut méta-évaluer son propre code. Ses fonctionnalités incluent :
-
-- Gestion des fermetures et fonctions locales (labels).
-- Support des continuations et des macros, y compris des macros complexes comme `loop`.
-- Méta-évaluation du méta-évaluateur lui-même, pour démontrer la réflexivité.
-
-### 2. Transformation vers un Langage Intermédiaire (LI)
-Ce module traduit le code LISP en un langage intermédiaire simplifié (LI) :
-
-- **Traits à couvrir** : fermetures, fonctions locales, structures de contrôle classiques (let, if, loop, select).
-- Génération d'une représentation de code plus proche de l'ASM, destinée à être prise en charge par la VM.
-
-### 3. Générateur de Code pour la VM
-Le générateur de code produit un "assembleur" qui transforme le langage intermédiaire (LI) en instructions exécutables par la VM :
+### 1. Générateur de Code pour la VM
+Le générateur de code produit un "assembleur" qui transforme le CLISP en instructions exécutables par la VM :
 
 - Support des instructions pour gérer les fermetures, labels, et structures de contrôle.
 - Production d’un fichier (ou d'une structure en mémoire) pouvant être chargé et exécuté sur la VM.
 - Gestion des appels et retours de fonctions, y compris l’appel aux primitives LISP depuis la VM.
 
-### 4. Machine Virtuelle (VM)
+### 2. Machine Virtuelle (VM)
 La VM est au cœur du projet : c’est elle qui exécute le code. Elle doit être capable de :
 
 - Interpréter les instructions générées, incluant les accès mémoire, empilements/dépilements, sauts et comparaisons.
@@ -117,19 +101,11 @@ Deux points importants :
 
 ## Étapes Clés du Développement
 
-1. **Méta-évaluateur**  
-   - Créer un interpréteur LISP gérant fermetures, continuations, labels, macros…  
-   - Valider la méta-évaluation (le méta-évaluateur s’évalue lui-même).
-
-2. **Transformation vers LI**  
-   - Définir un format intermédiaire (LI) pour représenter simplement les structures LISP.  
-   - Traduire let, if, loop, etc., en instructions plus proches de l’ASM.
-
-3. **Génération de Code pour la VM**  
+1. **Génération de Code pour la VM**  
    - Écrire un assembleur LISP → code VM.  
    - Gérer spécifiquement la construction des fermetures et l’allocation de labels.
 
-4. **Implémentation de la VM**  
+2. **Implémentation de la VM**  
    - Définir la structure de données (registres, mémoire, pile).  
    - Implémenter la boucle d’interprétation (exécution des instructions).  
    - Écrire la routine de chargement pour stocker le code et résoudre les labels.  

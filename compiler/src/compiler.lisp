@@ -5,10 +5,21 @@
 ;;; Description : Fichier contenant le code du compilateur general
 ;;; ============================================================================
 
-(defun compile (expression)
+(require "compiler/src/expressions/compiler-symb-atom.lisp")
+(require "compiler/src/expressions/compiler-arithm.lisp")
+(require "compiler/src/expressions/compiler-comp.lisp")
+(require "compiler/src/expressions/compiler-logique.lisp")
+(require "compiler/src/expressions/compiler-ctrl-flux.lisp")
+(require "compiler/src/expressions/compiler-fonc.lisp")
+(require "compiler/src/expressions/compiler-var.lisp")
+(require "compiler/src/utils/generator.lisp")
+(require "vm/src/functional-interface/vm.lisp")
+
+(defun compile-generic (expression)
+    "Table de correspondance des expressions"
 (cond 
-    ((symbolp expression) (compile-symbol expression))
-    ((atom expression) (compile-atom expression))
+    ((symbolp expression) (compile-symbol expression)) ;; Symbol = variable
+    ((atom expression) (compile-atom expression)) ;; Atom = constante
     ((listp expression)
         (cond
             ;; 1) Operation arithmetique
@@ -38,6 +49,5 @@
             ;; 6) Operation de definition de variable
             ((eq (car expression) 'setq) (compile-setq (cdr expression)))
 
-        ))
-    
+        )))
 )

@@ -5,11 +5,6 @@
 ;; Description    : Tests unitaires pour les opérations de saut de la machine virtuelle
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
-(require "src/instructions/vm-imports.lisp")
-(require "src/utils/vm-imports.lisp")
-(require "src/functional-interface/vm.lisp")
-
 (defun test-handle-jmp ()
   "Teste le comportement de handle-jmp sur toutes les possibilités."
   (let ((vm (init-vm :name "test-vm" :memsize 1024 :max-stack-size 256)))

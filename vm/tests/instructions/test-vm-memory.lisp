@@ -5,10 +5,6 @@
 ;;; Description : Tests pour handle-load et handle-store
 ;;; ============================================================================
 
-(require "src/instructions/vm-imports.lisp")
-(require "src/utils/vm-imports.lisp")
-(require "src/functional-interface/vm.lisp")
-
 (defun test-handle-load ()
   "Teste le comportement de handle-load sur toutes les possibilités"
   (let ((vm (init-vm :name "test-vm" :memsize 1024 :max-stack-size 256)))
